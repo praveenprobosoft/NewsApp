@@ -62,34 +62,6 @@ public class MyTopHeadlinesAdapter extends RecyclerView.Adapter<MyTopHeadlinesAd
     public int getItemCount() {
         return articleModelList.size();
     }
-/*
-
-
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    articleModelList = articleModelList;
-                } else {
-
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = articleModelList;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                articleModelList = (List<ArticleModel>) filterResults.values;
-                notifyDataSetChanged();
-            }
-        };
-    }*/
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title,description,network;
         ImageView newsImage;

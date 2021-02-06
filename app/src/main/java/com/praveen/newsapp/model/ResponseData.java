@@ -1,7 +1,6 @@
 package com.praveen.newsapp.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.praveen.newsapp.model.ArticleModel;
 
 import java.util.List;
 

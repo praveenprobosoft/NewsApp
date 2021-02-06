@@ -1,6 +1,7 @@
 package com.praveen.newsapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,11 +38,21 @@ public class DetailScreen extends AppCompatActivity implements MyListner {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityDetailScreenBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail_screen);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_ios_24);
         apiService =
                 APIClient.getClient().create(APIInterface.class);
         getTopHighlights();
         String url = getIntent().getExtras().getString("articleurl");
+        activityDetailScreenBinding.txtHeader.setText(url);
         loadWeb(url);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void loadWeb(String url){
@@ -77,9 +88,7 @@ public class DetailScreen extends AppCompatActivity implements MyListner {
                 activityDetailScreenBinding.rcTopNews.setLayoutManager(mLayoutManager);
                 activityDetailScreenBinding.rcTopNews.setItemAnimator(new DefaultItemAnimator());
                 activityDetailScreenBinding.rcTopNews.setAdapter(myTopHeadlinesAdapter);
-
             }
-
             @Override
             public void onFailure(Call<ResponseData> call, Throwable t) {
                 Log.e(TAG, t.toString());
